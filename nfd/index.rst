@@ -1,4 +1,4 @@
-Node Feature Discovery (NFD) Guide
+Node Feature Discovery (NFD)
 ##########################################
 
 Kubernetes is becoming more and more popular as the first 
