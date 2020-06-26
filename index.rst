@@ -13,7 +13,6 @@ In this site, you will find detailed documentation and technical guides of each 
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
    nfd/index
    device-plugins/index

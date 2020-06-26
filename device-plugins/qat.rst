@@ -1,2 +1,2 @@
-Quick Assist Device Plugin
+QuickAssist Technology Device Plugin
 ##########################################
