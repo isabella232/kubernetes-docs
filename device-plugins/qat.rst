@@ -1,0 +1,2 @@
+QuickAssist Technology Device Plugin
+##########################################

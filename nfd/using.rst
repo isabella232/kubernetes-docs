@@ -39,7 +39,7 @@ Step 3 - Show the labels of the node
    kubectl get no -o json | jq '.items[].metadata.annotations'
    kubectl describe sa/nfd-master clusterrole/nfd-master clusterrolebinding/nfd-master
 
-Here is `simple demo <https://gitlab.devtools.intel.com/ssp-demos/kubernetes/node-feature-discovery-simple-demo#screenshots>`__ . 
+See this `simple demo <https://gitlab.devtools.intel.com/ssp-demos/kubernetes/node-feature-discovery-simple-demo#screenshots>`__ . 
  
 NFD software itself consists of two components: nfd-master and nfd-worker
 
@@ -47,7 +47,7 @@ NFD software itself consists of two components: nfd-master and nfd-worker
 -  nfd-worker is for detecting features and communicates them to nfd-master.
    One instance of nfd-worker is supposed to be run on each node of the cluster
 
-For more detail of deployment, please `see <https://github.com/kubernetes-sigs/node-feature-discovery#usage>`__ or the `live demo <https://asciinema.org/a/247316>`__ .
+For more detail of deployment, please visit `kubernetes sig documentation <https://github.com/kubernetes-sigs/node-feature-discovery#usage>`__ and see the `recorded demo <https://asciinema.org/a/247316>`__ .
 
 Usage of the node labels
 ========================
