@@ -30,8 +30,9 @@ service DevicePlugin {
 
 ### Resource reporting and monitoring
 
-For each hardware device in kubernetes cluster, there must be a corresponding device plugin to manage. and these device plugins connect the device plugin manager in kubelet through gRPC as the client,  the device plugin reports device name and it's UNIX socket API version to kubelet. see figure 1
-![Figure 1](C:\Users\ayang3\AppData\Roaming\Typora\typora-user-images\image-20200619171522672.png) 
+For each hardware device in kubernetes cluster, there must be a corresponding device plugin to manage. and these device plugins connect the device plugin manager in kubelet through gRPC as the client,  the device plugin reports device name and it's UNIX socket API version to kubelet. 
+see figure 1
+.. figure:: /_images/device-plugin-reg.png
 
 generally speaking, the whole process is divided into four steps. the first three steps are running on the nodes. the fourth step is the interaction between kubelet and API server.  see below:
 
@@ -60,9 +61,8 @@ Note:  kubelet only reports the number of specific device  to  API server. the d
 
 ### Pod scheduling and device resource allocation 
 
-When a container application wants to use a device, it only needs to declare the device resource and the corresponding quantity in the *limits* section of yaml file in pod's resource (for example intel.com/gpu : 1), 
-
-![image-20200619174016657](C:\Users\ayang3\AppData\Roaming\Typora\typora-user-images\image-20200619174016657.png)
+When a container application wants to use a device, it only needs to declare the device resource and the corresponding quantity in the *limits* section of yaml file in pod's resource (for example intel.com/gpu : 1), see figure 2
+.. figure:: /_images/device-plugin-allco.png
 
 then Kubernetes scheduler will find the right node  for placing , after that, scheduler will reduce 1 from the saved number of available device and complete the binding pod with node.
 After binding successfully, the kubelet running on corresponding node will be responsible for launching the container application. and finds the requested device resource by the pod's container, it will call its internal device plugin manager to get an available device ID from it's device ID list and send this allocated device ID as the parameter to local device plugin service, 
