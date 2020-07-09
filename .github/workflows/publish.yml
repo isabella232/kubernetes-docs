@@ -23,6 +23,7 @@ jobs:
         make html
     - name: Deploy the docs
       run: |
+        mv _build/html $HOME/output
         cd $HOME/output
         git init
         git config --global user.name "${GITHUB_ACTOR}"
