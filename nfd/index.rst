@@ -8,7 +8,7 @@ Kubernetes in the industry today. However, there is no way to identify
 hardware capabilities or configurations. There is also no way for a workload
 to request a specific hardware feature, especially non-allocable resources,
 like Intel® Advanced Vector Extensions (Intel® AVX) or
-Intel Resource Director Technology (Intel® RDT) on Intel platforms.
+Intel® Resource Director Technology (Intel® RDT) on Intel platforms.
 So, Intel® and the open source community established a project
 named "Node Feature Discovery", the goal is to detect resources on each
 node in a Kubernetes cluster and advertise those features to match the

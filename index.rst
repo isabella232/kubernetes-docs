@@ -3,9 +3,9 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Intel's Kubernetes\* Documentation Site!
+Welcome to Intel®'s Kubernetes\* Documentation Site!
 ====================================================
-Intel is committed to furthering open cloud innovation to support
+Intel® is committed to furthering open cloud innovation to support
 data-centric, edge-distributed workloads of the future and provide greater
 computing performance, speed, security, storage, networking and more. Our
 early contributions to Kubernetes helped extend capabilities by shaping the
