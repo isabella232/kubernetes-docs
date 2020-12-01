@@ -1,0 +1,292 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Enabling Node Feature Discovery in a Kubernetes* Cluster &mdash; Kubernetes Documentation  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Using Node Feature Discovery in a Kubernetes Cluster" href="using.html" />
+    <link rel="prev" title="Node Feature Discovery Overview" href="overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> Kubernetes Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Node Feature Discovery (NFD)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">Node Feature Discovery Overview</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Enabling Node Feature Discovery in a Kubernetes* Cluster</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nfd-uses-labels-for-advertising-node-level-features">NFD uses labels for advertising node-level features</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#node-labels-are-published-by-nfd-with-encoded-the-following-information">Node labels are published by NFD with encoded the following information:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="using.html">Using Node Feature Discovery in a Kubernetes Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#source-code-of-the-node-feature-discovery">Source code of the Node Feature Discovery</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../device-plugins/index.html">Intel® Device Plug-ins for Kubernetes*</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pmem-csi/index.html">PMEM-CSI for Kubernetes*</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cpu-manager/index.html">CPU Resource Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cri-manager/index.html">CRI Resource Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cni/index.html">CNI Bare  metal Container solution for VNF</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kubernetes Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Node Feature Discovery (NFD)</a> &raquo;</li>
+        
+      <li>Enabling Node Feature Discovery in a Kubernetes* Cluster</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/nfd/enabling.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="enabling-node-feature-discovery-in-a-kubernetes-cluster">
+<h1>Enabling Node Feature Discovery in a Kubernetes* Cluster<a class="headerlink" href="#enabling-node-feature-discovery-in-a-kubernetes-cluster" title="Permalink to this headline">¶</a></h1>
+<p>Node Feature Discovery is designed to detect additional hardware features on
+each node in a Kubernetes cluster. It can discover more info on CPU, IOMMU,
+Kernel, Memory, Network, PCI, Storage, and the general system. each node is
+labeled with the additional node features so that Pods can be scheduled or not
+scheduled based on those additional node features, it is designed to run as a
+separate container on each individual node of the cluster, discovers
+capabilities of the node, and finally, publishes these as node labels using
+the Kubernetes API, then be stored into ETCD which runs on the Kubernetes
+Master node.By using a Node Selector, an incoming pod can express its
+requirements for specific capabilities.</p>
+<p>Examples:</p>
+<ul>
+<li><p><cite>Application A</cite> requests to land on a node with SR-IOV and Turbo Boost
+capabilities. The Kubernetes scheduler on the master node will use the
+stored node labels to match the incoming pod to the most appropriate node.</p></li>
+<li><p><cite>Application B</cite> has no special capability request,therefore, it can be
+placed on either node.</p>
+<div class="figure align-default">
+<img alt="../_images/image002.png" src="../_images/image002.png" />
+</div>
+</li>
+</ul>
+<div class="section" id="nfd-uses-labels-for-advertising-node-level-features">
+<h2>NFD uses labels for advertising node-level features<a class="headerlink" href="#nfd-uses-labels-for-advertising-node-level-features" title="Permalink to this headline">¶</a></h2>
+<p>Labels are key-value pairs that are attached to Kubernetes objects, such as
+pods or nodes for specifying attributes of objects that may be relevant to the
+end user. They can also be used to organize objects into specific subsets.
+Labels are a part of the metadata information that is attached to each node’s
+description. all this information is stored in ETCD.</p>
+<div class="section" id="node-labels-are-published-by-nfd-with-encoded-the-following-information">
+<h3>Node labels are published by NFD with encoded the following information:<a class="headerlink" href="#node-labels-are-published-by-nfd-with-encoded-the-following-information" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Namespace, i.e. feature.node.kubernetes.io</p></li>
+<li><p>The source for each label (e.g. cpu).</p></li>
+<li><p>The name of the discovered feature as it appears in the underlying source
+(e.g. cpuid.AESNI from cpu).</p></li>
+<li><p>The value of the discovered feature.</p></li>
+</ul>
+<p>Feature label names adhere to the following pattern: <code class="docutils literal notranslate"><span class="pre">&lt;namespace\&gt;/&lt;source</span> <span class="pre">name\&gt;-&lt;feature</span> <span class="pre">name\&gt;[.&lt;attribute</span> <span class="pre">name\&gt;]</span></code></p>
+<p>The last component (i.e. attribute-name) is optional, and only used if a
+feature has a logical sub-hierarchy,</p>
+<ul class="simple">
+<li><p>e.g. <code class="docutils literal notranslate"><span class="pre">sriov.capable</span></code> and <code class="docutils literal notranslate"><span class="pre">sriov.configure</span></code> from the network source.</p></li>
+</ul>
+<p>An example of a label created by node feature discovery:</p>
+<p><code class="docutils literal notranslate"><span class="pre">feature.node.kubernetes.io/nfd-network-sriov.capable</span> <span class="pre">=</span> <span class="pre">true</span></code></p>
+<p>The following values indicate presence of SR-IOV capable network interface
+card.</p>
+<ul class="simple">
+<li><p><strong>namespace</strong>: <code class="docutils literal notranslate"><span class="pre">feature.node.kubernetes.io</span></code></p></li>
+<li><p><strong>source</strong>: <code class="docutils literal notranslate"><span class="pre">network</span></code></p></li>
+<li><p><strong>feature name</strong>: <code class="docutils literal notranslate"><span class="pre">sriov.capable</span></code></p></li>
+<li><p><strong>value</strong>: <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+<p>In addition to the actual node feature labels, NFD also advertises its own
+software version: <code class="docutils literal notranslate"><span class="pre">feature.node.kubernetes.io/node-feature-discovery.version</span> <span class="pre">=</span> <span class="pre">v0.3.0</span></code>.</p>
+<p>For more details of the supported feature sources and their feature labels,
+please see the Kubernetes sigs <a class="reference external" href="https://github.com/kubernetes-sigs/node-feature-discovery#feature-labels">repository</a>.</p>
+<p>*Other names and brands may be claimed as the property of others.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="using.html" class="btn btn-neutral float-right" title="Using Node Feature Discovery in a Kubernetes Cluster" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="overview.html" class="btn btn-neutral float-left" title="Node Feature Discovery Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, various
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

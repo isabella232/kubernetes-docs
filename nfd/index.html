@@ -1,0 +1,259 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Node Feature Discovery (NFD) &mdash; Kubernetes Documentation  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Node Feature Discovery Overview" href="overview.html" />
+    <link rel="prev" title="Welcome to Intel®’s Kubernetes* Documentation Site!" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> Kubernetes Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Node Feature Discovery (NFD)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html">Node Feature Discovery Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enabling.html">Enabling Node Feature Discovery in a Kubernetes* Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using.html">Using Node Feature Discovery in a Kubernetes Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#source-code-of-the-node-feature-discovery">Source code of the Node Feature Discovery</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../device-plugins/index.html">Intel® Device Plug-ins for Kubernetes*</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pmem-csi/index.html">PMEM-CSI for Kubernetes*</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cpu-manager/index.html">CPU Resource Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cri-manager/index.html">CRI Resource Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cni/index.html">CNI Bare  metal Container solution for VNF</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kubernetes Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Node Feature Discovery (NFD)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/nfd/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="node-feature-discovery-nfd">
+<h1>Node Feature Discovery (NFD)<a class="headerlink" href="#node-feature-discovery-nfd" title="Permalink to this headline">¶</a></h1>
+<p>Kubernetes* is becoming more and more popular as the first
+Cloud Native Computing Foundation (CNCF) project, for managing containerized
+workloads and services, and there are already lots of products based on
+Kubernetes in the industry today. However, there is no way to identify
+hardware capabilities or configurations. There is also no way for a workload
+to request a specific hardware feature, especially non-allocable resources,
+like Intel® Advanced Vector Extensions (Intel® AVX) or
+Intel® Resource Director Technology (Intel® RDT) on Intel platforms.
+So, Intel® and the open source community established a project
+named “Node Feature Discovery”, the goal is to detect resources on each
+node in a Kubernetes cluster and advertise those features to match the
+workload to platform capabilities.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Node Feature Discovery Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#detected-features">Detected features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#supported-features">Supported features</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="enabling.html">Enabling Node Feature Discovery in a Kubernetes* Cluster</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="enabling.html#nfd-uses-labels-for-advertising-node-level-features">NFD uses labels for advertising node-level features</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="using.html">Using Node Feature Discovery in a Kubernetes Cluster</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="using.html#deployment-script">Deployment script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using.html#usage-of-the-node-labels">Usage of the node labels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using.html#customization">Customization</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="source-code-of-the-node-feature-discovery">
+<h2>Source code of the Node Feature Discovery<a class="headerlink" href="#source-code-of-the-node-feature-discovery" title="Permalink to this headline">¶</a></h2>
+<p>Node Feature Discovery <a class="reference external" href="https://github.com/kubernetes-sigs/node-feature-discovery">Github Repository</a></p>
+<p>*Other names and brands may be claimed as the property of others.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="overview.html" class="btn btn-neutral float-right" title="Node Feature Discovery Overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral float-left" title="Welcome to Intel®’s Kubernetes* Documentation Site!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, various
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

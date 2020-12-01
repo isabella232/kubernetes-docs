@@ -1,0 +1,232 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>QuickAssist Technology Device Plugin &mdash; Kubernetes Documentation  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="VPU Device Plugin" href="vpu.html" />
+    <link rel="prev" title="FPGA Device Plugin" href="fpga.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> Kubernetes Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../nfd/index.html">Node Feature Discovery (NFD)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Intel® Device Plug-ins for Kubernetes*</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="gpu.html">GPU Device Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fpga.html">FPGA Device Plugin</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">QuickAssist Technology Device Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpu.html">VPU Device Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sgx.html">SGX Device Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#device-management-in-kubernetes">Device Management in Kubernetes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#device-plug-in-working-mechanism">Device Plug-in Working Mechanism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#device-plugin-deployment">Device Plugin Deployment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../pmem-csi/index.html">PMEM-CSI for Kubernetes*</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cpu-manager/index.html">CPU Resource Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cri-manager/index.html">CRI Resource Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cni/index.html">CNI Bare  metal Container solution for VNF</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kubernetes Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Intel® Device Plug-ins for Kubernetes*</a> &raquo;</li>
+        
+      <li>QuickAssist Technology Device Plugin</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/device-plugins/qat.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="quickassist-technology-device-plugin">
+<h1>QuickAssist Technology Device Plugin<a class="headerlink" href="#quickassist-technology-device-plugin" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://intel.github.io/intel-device-plugins-for-kubernetes/README.html#qat-device-plugin">Documentation Page</a></p>
+<p>Return to <a class="reference external" href="https://01.org/kubernetes/projects/intel%C2%AE-qat-device-plugin">Intel QAT Device Plugin project on 01.org</a></p>
+<p>*Other names and brands may be claimed as the property of others.</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="vpu.html" class="btn btn-neutral float-right" title="VPU Device Plugin" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="fpga.html" class="btn btn-neutral float-left" title="FPGA Device Plugin" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, various
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

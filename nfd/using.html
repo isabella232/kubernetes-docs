@@ -1,0 +1,334 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Using Node Feature Discovery in a Kubernetes Cluster &mdash; Kubernetes Documentation  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Intel® Device Plug-ins for Kubernetes*" href="../device-plugins/index.html" />
+    <link rel="prev" title="Enabling Node Feature Discovery in a Kubernetes* Cluster" href="enabling.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> Kubernetes Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Node Feature Discovery (NFD)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">Node Feature Discovery Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enabling.html">Enabling Node Feature Discovery in a Kubernetes* Cluster</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Using Node Feature Discovery in a Kubernetes Cluster</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#deployment-script">Deployment script</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#step-1-download-and-check-the-content-of-nfd-yaml-file">Step 1 - Download and check the content of NFD yaml file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-2-apply-daemonset-resource">Step 2 - Apply Daemonset resource</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-3-show-the-labels-of-the-node">Step 3 - Show the labels of the node</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#usage-of-the-node-labels">Usage of the node labels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#customization">Customization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#source-code-of-the-node-feature-discovery">Source code of the Node Feature Discovery</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../device-plugins/index.html">Intel® Device Plug-ins for Kubernetes*</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pmem-csi/index.html">PMEM-CSI for Kubernetes*</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cpu-manager/index.html">CPU Resource Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cri-manager/index.html">CRI Resource Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cni/index.html">CNI Bare  metal Container solution for VNF</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kubernetes Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Node Feature Discovery (NFD)</a> &raquo;</li>
+        
+      <li>Using Node Feature Discovery in a Kubernetes Cluster</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/nfd/using.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="using-node-feature-discovery-in-a-kubernetes-cluster">
+<h1>Using Node Feature Discovery in a Kubernetes Cluster<a class="headerlink" href="#using-node-feature-discovery-in-a-kubernetes-cluster" title="Permalink to this headline">¶</a></h1>
+<p>Before using Kubernetes Node labels that published by NFD, NFD itself should
+be deployed through standard Kubernetes resource DaemonSet or Job. Here, we
+recommend deploying NFD as a Kubernetes DaemonSet. this ensures that all nodes
+of the Kubernetes cluster run NFD, and, new nodes get automatically labeled as
+soon as they become schedulable in the cluster. Meanwhile, as a DaemonSet, NFD
+runs in the background, re-labeling nodes every 60 seconds (by default) so
+that any changes in the node capabilities are detected.
+For quick start, you can use the provided template specs to deploy the NFD
+release image with the default configuration in the default namespace.</p>
+<div class="section" id="deployment-script">
+<h2>Deployment script<a class="headerlink" href="#deployment-script" title="Permalink to this headline">¶</a></h2>
+<p>Start with an already initialized Kubernetes cluster, if the Kubernetest
+cluster is not ready, please follow up the <a class="reference external" href="https://kubernetes.io/docs/tutorials/kubernetes-basics/create-cluster/">Setup Instructions</a></p>
+<div class="section" id="step-1-download-and-check-the-content-of-nfd-yaml-file">
+<h3>Step 1 - Download and check the content of NFD yaml file<a class="headerlink" href="#step-1-download-and-check-the-content-of-nfd-yaml-file" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference external" href="https://github.com/kubernetes-sigs/node-feature-discovery">Node feature discovery project</a> provides sample template for quick test.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl https://raw.githubusercontent.com/kubernetes-sigs/node-feature-discovery/master/nfd-daemonset-combined.yaml.template
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-2-apply-daemonset-resource">
+<h3>Step 2 - Apply Daemonset resource<a class="headerlink" href="#step-2-apply-daemonset-resource" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl create -f https://raw.githubusercontent.com/kubernetes-sigs/node-feature-discovery/master/nfd-daemonset-combined.yaml.template
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Once applied above DaemonSet resource file to a real Kubernetes cluster, it
+will create a service account, clusterrole, and clusterrolebinding.</p>
+</div>
+</div>
+<div class="section" id="step-3-show-the-labels-of-the-node">
+<h3>Step 3 - Show the labels of the node<a class="headerlink" href="#step-3-show-the-labels-of-the-node" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl get no -o json <span class="p">|</span> jq <span class="s1">&#39;.items[].metadata.labels&#39;</span>
+kubectl get no -o json <span class="p">|</span> jq <span class="s1">&#39;.items[].metadata.annotations&#39;</span>
+kubectl describe sa/nfd-master clusterrole/nfd-master clusterrolebinding/nfd-master
+</pre></div>
+</div>
+<p>See this <a class="reference external" href="https://gitlab.devtools.intel.com/ssp-demos/kubernetes/node-feature-discovery-simple-demo#screenshots">simple demo</a> .</p>
+<p>NFD software itself consists of two components: nfd-master and nfd-worker</p>
+<ul class="simple">
+<li><p>nfd-master is responsible for labeling Kubernetes node objects</p></li>
+<li><p>nfd-worker is for detecting features and communicates them to nfd-master.
+One instance of nfd-worker is supposed to be run on each node of the cluster</p></li>
+</ul>
+<p>For more detail of deployment, please visit <a class="reference external" href="https://github.com/kubernetes-sigs/node-feature-discovery#usage">kubernetes sig documentation</a> and see the <a class="reference external" href="https://asciinema.org/a/247316">recorded demo</a> .</p>
+</div>
+</div>
+<div class="section" id="usage-of-the-node-labels">
+<h2>Usage of the node labels<a class="headerlink" href="#usage-of-the-node-labels" title="Permalink to this headline">¶</a></h2>
+<p>Now, it’s time to describe using Labels to schedule pods, these labels can be
+used for placing hard or soft constraints on where specific pods should be
+run.</p>
+<p>There are two methods: <a class="reference external" href="https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector">nodeSelector</a> and <a class="reference external" href="https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity">nodeAffinity</a> .</p>
+<p>NodeSelector is a simple and limited mechanism to specify hard requirements on
+which node a pod should be run. nodeSelector contains a list of key-value
+pairs presenting required node labels and their values. A node must fulfill
+each of the requirements, that is, it must have each of the indicated
+label-value pairs for the pod to be able to be scheduled there.
+For example, it is possible to ensure that ML jobs are scheduled on AVX-512
+nodes, so the pod yaml specifically requests AVX-512 using the following:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Pod</span>
+<span class="nt">metadata</span><span class="p">:</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">node-selector-example</span>
+    <span class="nt">spec</span><span class="p">:</span>
+<span class=" -Error">   </span><span class="nt">nodeSelector</span><span class="p">:</span> <span class="nt">feature.node.kubernetes.io/cpu-cpuid.AVX512BW</span><span class="p">:</span> <span class="s">&#39;true&#39;</span>
+   <span class="nt">containers</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ML-demo</span>
+</pre></div>
+</div>
+<p>NodeAffinity provides a much more expressive way to specify constraints on
+which nodes a pod should be run. It provides a range of different operators to
+use for matching label values (not just “equal to”) and allows the
+specification of both hard and soft requirements (i.e. preferences).
+Currently, the <a class="reference external" href="https://github.com/kubernetes-sigs/node-feature-discovery">node feature discovery</a> provided framwork and reference implement for
+exposing hardware platform features through note labels. In most cases, per
+products requirement, user needs to custom-build an NFD version to meet
+specific demands, this is not difficult</p>
+</div>
+<div class="section" id="customization">
+<h2>Customization<a class="headerlink" href="#customization" title="Permalink to this headline">¶</a></h2>
+<p>Clone Node feature discovery code base for extention and customization, then
+generate customized docker images, push them into your registry.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/kubernetes-sigs/node-feature-discovery
+<span class="nb">cd</span> &lt;project-root&gt;
+make
+docker push &lt;IMAGE_TAG&gt;
+</pre></div>
+</div>
+<p>After that, refer to <a class="reference external" href="https://github.com/kubernetes-sigs/node-feature-discovery/blob/master/nfd-daemonset-combined.yaml.template">nfd-daemonset-combined.yaml.template</a>
+to write a new deployment resource file so that your customized NFD docker
+images be used.</p>
+<p>For instructions on building source code of the <a class="reference external" href="https://github.com/kubernetes-sigs/node-feature-discovery">Node feature discovery project</a>, please
+follow up:</p>
+<p><a class="reference external" href="https://github.com/kubernetes-sigs/node-feature-discovery#building-from-source">Build source code</a></p>
+<p>There is also a way to write a device plug-in to expose additional hardware
+features, like the 3rd acceleration cards. Please refer to the <a class="reference external" href="https://github.com/intel/intel-device-plugins-for-kubernetes">open source project</a>.</p>
+<p>*Other names and brands may be claimed as the property of others.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../device-plugins/index.html" class="btn btn-neutral float-right" title="Intel® Device Plug-ins for Kubernetes*" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="enabling.html" class="btn btn-neutral float-left" title="Enabling Node Feature Discovery in a Kubernetes* Cluster" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, various
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
