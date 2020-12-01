@@ -18,6 +18,7 @@ devices in Kubernetes cluster.
    fpga
    qat
    vpu
+   sgx
 
 Device Management in Kubernetes
 ===========================================

@@ -26,6 +26,7 @@ each project that we support.
 
    nfd/index
    device-plugins/index
+   pmem-csi/index
    cpu-manager/index
    cri-manager/index
    cni/index
