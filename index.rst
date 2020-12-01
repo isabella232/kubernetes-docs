@@ -16,6 +16,7 @@ In this site, you will find detailed documentation and technical guides of each 
 
    nfd/index
    device-plugins/index
+   pmem-csi/index
    cpu-manager/index
    cri-manager/index
    cni/index

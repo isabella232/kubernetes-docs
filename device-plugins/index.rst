@@ -11,6 +11,7 @@ The intent of this documentation is to help developers/users understand how to e
    fpga
    qat
    vpu
+   sgx
 
 Device Management in Kubernetes
 ===========================================
