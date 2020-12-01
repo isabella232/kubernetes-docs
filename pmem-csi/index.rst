@@ -1,4 +1,4 @@
-PMEM-CSI for Kubernetes
+PMEM-CSI for Kubernetes*
 ##########################################
 
 `Documentation Page <https://intel.github.io/pmem-csi/latest/README.html>`__
